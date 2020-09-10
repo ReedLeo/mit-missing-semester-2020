@@ -51,6 +51,16 @@ bc
   * `-c`: **--count**。 在行首添加出现次数
 
 ### awk - another editor
-* `{print $2}`: 表示答应每行的第2个域。
+* `{print $2}`: 表示打印每行的第2个域。
   * `$0`: 表示整个行。
-  * `$1`~`$n`: 表示从每行的第`n`个域。
+  * `$1`~`$n`: 表示每行的第`n`个域。
+* `-F`: 指定域分隔符，默认是空白字符(whitespace， 包括`\t`?)
+
+### Analyzing data
+* `bc`: 计算器
+* `R`: 统计语言
+* `gnuplot`: 制图
+
+### Exercise
+1. [regex tutorial](https://regexone.com/lesson/introduction_abcs)
+2. 
