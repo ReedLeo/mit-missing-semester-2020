@@ -28,3 +28,10 @@
     * `<C-b> ,`: 重命名当前窗口
     * `<C-b> w`: 列出当前所有窗口
   * Panes: 类似vim的splits, 可以同时运行多个shellshell。
+    * `<C-b> "`: 水平切分当前pane.
+    * `<C-b> %`: 垂直切分当前pane.
+    * `<C-b> <direction>`: 切换到特定方向的pane, 这里`<direction>`是方向键.
+    * `<C-b> z`: 放大/缩小当前pane.
+    * `<C-b> <space>`: 切换pane的排列方式（水平，垂直，原始）
+  * [tmux快速入门](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
+  * [tmux详细教程](http://linuxcommand.org/lc3_adv_termmux.php)
