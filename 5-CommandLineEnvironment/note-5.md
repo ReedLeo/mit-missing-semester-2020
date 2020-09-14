@@ -20,4 +20,11 @@
 * `tmux`:
   * Sessions: 会话是一个独立的`workspace`，可以容纳一个或多个windows
   * Windows: 相当于浏览器的标签（`tab`）
+    * `<C-b> c`: 创建新窗口
+    * `<C-b> d`: 关闭窗口
+    * `<C-b> N`: 其中`N`指的是具体数字。转到指定编号的窗口
+    * `<C-b> n`: 转到下一个窗口
+    * `<C-b> p`：转到前一个窗口
+    * `<C-b> ,`: 重命名当前窗口
+    * `<C-b> w`: 列出当前所有窗口
   * Panes: 类似vim的splits, 可以同时运行多个shellshell。
