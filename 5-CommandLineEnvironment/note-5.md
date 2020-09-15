@@ -76,10 +76,67 @@ alias ll
 ```
 
 ## Dotfiles
-常见程序的配置文件所在位置：
-- `bash`: `~/.bashrc`, 或`~/.bash_profile`
-- `zsh`: `~/.zshrc`
-- `git`: `~/.gitconfig`
-- `vim`: `~/.vimrc`
-- `ssh`: `~/.ssh/config`
-- `tmux`: `~/.tmux.conf`
+* 常见程序的配置文件所在位置：
+  - `bash`: `~/.bashrc`, 或`~/.bash_profile`
+  - `zsh`: `~/.zshrc`
+  - `git`: `~/.gitconfig`
+  - `vim`: `~/.vimrc`
+  - `ssh`: `~/.ssh/config`
+  - `tmux`: `~/.tmux.conf`
+* 管理自己的dotfiles:
+  * 将自己常用的dotfiles纳入版本管理中，建一个专门的文件夹存放。
+  * 再用`ln -s`命令将它们链接到相关配置的默认路径。
+* 学习资源：
+  * github搜索dotfiles
+  * [dotfiles](https://dotfiles.github.io/)
+
+### Portability
+为了提高各类dotfiles的可以移植性，可以在在dotfile中写一些条件判断语句（类似C的条件编译)。例如，可以在shell中写如下语句（可以放在`.bashrc`, `.zshrc`中）
+```bash
+if [[ "$(uname)" == "Linux" ]]; then {do_something}; fi
+
+# Check before using shell-specific features
+if [[ "$SHELL" == "zsh" ]]; then {do_something}; fi
+
+# You can also make it machine-specific
+if [[ "$(hostname)" == "myServer" ]]; then {do_something}; fi
+```
+
+或者，某些类型的dotfile可以进行文件包含，那么就可以将非通用的配置写在单独的文件中，然后在通用的dotfile中包含之。例如，`~/.gitconfig`
+```
+[include]
+  path = ~/.gitconfig_local
+```
+
+这种思想同样适用于不同程序的共享配置中，假如`bash`和`zsh`同时使用`.aliases`文件来配置别名，那么可以使用如下配置：
+```bash
+# Test if ~/.aliases exists and source it
+if [[ -f ~/.aliases ]]; then
+  source ~/.aliases
+fi
+```
+
+## Remote Machines
+* `ssh`: 不仅可以用ip登录也可以用域名（如果有的话）。如`ssh foo@bar.mit.edu`
+* 在远程主机上执行命令，如: `ssh foobar@server ls`
+### SSH Keys
+* 生成密钥对（公私密钥）：`ssh-keygen`
+  * 注意，在生成时要给私钥设置一个口令，避免私钥泄露后被人直接利用。
+* 基于密钥的身份认证：
+  * `cat .ssh/id_ed25519.pub | ssh foobar@remote 'cat >> ~/.ssh/authorized_keys'
+` 拷贝本机公钥到远程主机，以后就可以直接使用ssh登录而不用输入口令了。
+  * 或者这样拷贝： `ssh-copy-id -i .ssh/id_ed25519.pub foobar@remote`
+
+### Copying files over SSH
+* `ssh+tee`： `tee`用于复制程序的标准入内容到指定文件或标准输出。
+  * e.g. `echo "Hello remote host! I'm from $(whoami)" | ssh leo@192.168.37.129 tee serverfile` 远程主机将会在其家目录下生成一个`serverfile`文件，其中包含"Hello remote host! I'm from {your_local_user_name}"
+* `scp`: 方便拷贝大量文件夹/文件。
+  * `scp path/to/file remote_host:path/to/remote_file`
+* `rsync`: 相比`scp`，使用了增量复制。避免了重复，提高效率。语法类似`scp`
+
+### Port Forwarding
+[详见StackOverflow](https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot)
+* 本地端口转发：
+![Local Port Forwarding](https://i.stack.imgur.com/a28N8.png%C2%A0)
+* 远程端口转发:
+![Remote Port Forwarding](https://i.stack.imgur.com/4iK3b.png%C2%A0)
