@@ -35,3 +35,51 @@
     * `<C-b> <space>`: 切换pane的排列方式（水平，垂直，原始）
   * [tmux快速入门](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
   * [tmux详细教程](http://linuxcommand.org/lc3_adv_termmux.php)
+
+PS: `tmux`中`zsh-autosuggestions`提示字符变成白色，而不是浅灰色半透明字体，是因为`tmux`环境变量`TERM=screen`，而`zsh`中的`TERM=xterm-256color`。
+* 解决办法： `echo "export TERM=xterm-256color" >> ~/.zshrc` [详情参考这篇文章](https://www.mojidong.com/post/2017-05-14-zsh-autosuggestions/)
+
+### Aliases
+形式`alias alias_ame="command_to_alias arg1 arg2"`  
+**注意**：`=`等号两边**不能有空格**， 因为`alias`是一个shell命令，只接受一个参数。
+
+直接看例子学习`alias`用法：
+```bash
+# Make shorthands for command flags
+alias ll="ls -lh"
+
+# Save a lot of typing for common commands
+alias gs="git status"
+alias gc="gc commit"
+alias v="vim"
+
+# Save you from mistyping
+alias sl=ls
+
+# Overwrite existing commands for better defaults
+alias mv="mv -i"  # -i prompts before overwrite
+alias mkdir="mkdir -p" # -p make parent dirs as needed
+alias df="df -h" # -h prints human readable format
+
+# Alias can be composed
+alias la="ls -A"
+alias lla="la -l"
+
+# To ignore an alias run it prepended with \
+\ls
+# Or disable an alias altogether with unalias
+unalias la
+
+# To get an alias definition just call it with alias
+alias ll
+# Will print ll='ls -lh'
+```
+
+## Dotfiles
+常见程序的配置文件所在位置：
+- `bash`: `~/.bashrc`, 或`~/.bash_profile`
+- `zsh`: `~/.zshrc`
+- `git`: `~/.gitconfig`
+- `vim`: `~/.vimrc`
+- `ssh`: `~/.ssh/config`
+- `tmux`: `~/.tmux.conf`
