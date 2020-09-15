@@ -140,3 +140,21 @@ fi
 ![Local Port Forwarding](https://i.stack.imgur.com/a28N8.png%C2%A0)
 * 远程端口转发:
 ![Remote Port Forwarding](https://i.stack.imgur.com/4iK3b.png%C2%A0)
+
+### SSH Configuration
+* `~/.ssh/config`的配置例子
+```
+Host pwn_vm
+  User leo
+  HostName 192.168.37.129
+  Port 2222
+  IdentityFile ~/.ssh/id_sha.pub
+  LocalForward 9999 localhost:8888
+```
+* 如果配置后，运行`ssh pwn_vm`出现报错"Bad owner or permissions on ~/.ssh/config".解决方式如下：[参考StackExchange](https://serverfault.com/questions/253313/ssh-returns-bad-owner-or-permissions-on-ssh-config/710453)
+  * `chmod 600 ~/.ssh/config`
+  * `chown $USER ~/.ssh/config`
+
+### Miscellaneous
+* `Mosh`: **Mo**bile **sh**ell. 
+* `sshfs`: 可以将远程主机的目录挂载到本地。
