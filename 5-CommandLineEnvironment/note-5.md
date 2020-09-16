@@ -158,3 +158,25 @@ Host pwn_vm
 ### Miscellaneous
 * `Mosh`: **Mo**bile **sh**ell. 
 * `sshfs`: 可以将远程主机的目录挂载到本地。
+  
+
+## Exercise
+
+### Job control
+1. From what we have seen, we can use some ps aux | grep commands to get our jobs’ pids and then kill them, but there are better ways to do it. Start a sleep 10000 job in a terminal, background it with Ctrl-Z and continue its execution with bg. Now use pgrep to find its pid and pkill to kill it without ever typing the pid itself. (Hint: use the -af flags).
+   * Solution:
+     * `pgrep -af sleep`
+     * `pkill -f sleep`
+2. Say you don’t want to start a process until another completes, how you would go about it? In this exercise our limiting process will always be sleep 60 &. One way to achieve this is to use the wait command. Try launching the sleep command and having an ls wait until the background process finishes.  
+However, this strategy will fail if we start in a different bash session, since wait only works for child processes. One feature we did not discuss in the notes is that the kill command’s exit status will be zero on success and nonzero otherwise. kill -0 does not send a signal but will give a nonzero exit status if the process does not exist. Write a bash function called pidwait that takes a pid and waits until the given process completes. You should use sleep to avoid wasting CPU unnecessarily.
+* Solution:
+```bash
+#!/usr/bin/env zsh
+pidwait() {
+  echo "You want to wait for $1"
+  while kill -0 $1; do sleep 1; done                               
+}
+```
+
+### Terminal multiplexer
+1. Follow this tmux [tutorial](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/) and then learn how to do some basic customizations following [these steps](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/).
