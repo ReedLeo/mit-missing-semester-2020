@@ -142,15 +142,15 @@ fi
 ![Remote Port Forwarding](https://i.stack.imgur.com/4iK3b.png%C2%A0)
 
 ### SSH Configuration
-* `~/.ssh/config`的配置例子
-```
+* `~/.ssh/config`的配置例子  
+```bash
 Host pwn_vm
   User leo
   HostName 192.168.37.129
   Port 2222
-  IdentityFile ~/.ssh/id_sha.pub
+  IdentityFile ~/.ssh/id_sha # user private key, so there is no .pub at the end.
   LocalForward 9999 localhost:8888
-```
+```  
 * 如果配置后，运行`ssh pwn_vm`出现报错"Bad owner or permissions on ~/.ssh/config".解决方式如下：[参考StackExchange](https://serverfault.com/questions/253313/ssh-returns-bad-owner-or-permissions-on-ssh-config/710453)
   * `chmod 600 ~/.ssh/config`
   * `chown $USER ~/.ssh/config`
