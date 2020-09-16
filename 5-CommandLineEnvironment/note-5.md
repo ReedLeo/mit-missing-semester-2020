@@ -180,3 +180,10 @@ pidwait() {
 
 ### Terminal multiplexer
 1. Follow this tmux [tutorial](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/) and then learn how to do some basic customizations following [these steps](https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/).
+
+### Alias
+1. Create an alias dc that resolves to cd for when you type it wrongly.
+   * Solution: `alias dc=cd`
+2. Run `history | awk '{$1="";print substr($0,2)}' | sort | uniq -c | sort -n | tail -n 10` to get your top 10 most used commands and consider writing shorter aliases for them. Note: this works for Bash; if you’re using ZSH, use `history 1` instead of just `history`.
+  
+### Dotfiles
