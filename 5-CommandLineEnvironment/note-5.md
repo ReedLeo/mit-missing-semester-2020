@@ -135,7 +135,7 @@ fi
 * `rsync`: 相比`scp`，使用了增量复制。避免了重复，提高效率。语法类似`scp`
 
 ### Port Forwarding
-[详见StackOverflow](https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot)
+下图所示为两种风格的端口转发，效果相同，[详见StackOverflow](https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot)
 * 本地端口转发：
 ![Local Port Forwarding](https://i.stack.imgur.com/a28N8.png%C2%A0)
 * 远程端口转发:
