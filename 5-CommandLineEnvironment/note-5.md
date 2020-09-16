@@ -187,3 +187,23 @@ pidwait() {
 2. Run `history | awk '{$1="";print substr($0,2)}' | sort | uniq -c | sort -n | tail -n 10` to get your top 10 most used commands and consider writing shorter aliases for them. Note: this works for Bash; if you’re using ZSH, use `history 1` instead of just `history`.
   
 ### Dotfiles
+1. 创建一个属于你自己的`dotfiles`目录，并纳入到版本控制中。
+2. 收集存放你常用工具的配置文件，保存到上述目录中。
+3. 选择一种`dotfiles`安装方式（避免手动安装）。可以编写配置安装脚本，也可以使用[这些工具](https://dotfiles.github.io/utilities/)。
+4. 发布到github上。
+
+### Remote Machines
+* `ssh-keygen -t ed25519 -a 100`生成公私密钥对（建议给私钥设置口令）。
+* 向本地主机`~/.ssh/config`添加如下内容：
+```bash
+Host ubt20  # my vm is ubuntu20
+  User leo
+  HostName 192.168.xx.xx
+  IdentityFile ~/.ssh/id_ed25519  # no .pub at the end, because we use private key.
+  LocalForward 9999 localhost:8888 # we can visit remotehost:8888 form localhost:9999
+```
+* `ssh-copy-id ubt20` 将`ssh`公钥拷贝到远程主机`ubt20`上。
+* 远程主机上运行`python -m http.server 8888`。本地主机使用浏览器访问`http://localhost:9999`即可访问远程主机的web服务。
+* 修改`ssh`服务端登录配置：修改`/etc/ssh/ssh_config`文件后，重启`sshd`服务。
+  * 禁止`ssh`密码登录: 修改`PasswordAuthentication no`
+  * 禁止`root`用户使用`ssh`登录：修改 `PermitRootLogin prohibit-password`
