@@ -207,3 +207,16 @@ Host ubt20  # my vm is ubuntu20
 * 修改`ssh`服务端登录配置：修改`/etc/ssh/ssh_config`文件后，重启`sshd`服务。
   * 禁止`ssh`密码登录: 修改`PasswordAuthentication no`
   * 禁止`root`用户使用`ssh`登录：修改 `PermitRootLogin prohibit-password`
+
+5.(Challenge)安装并使用[Mosh](https://mosh.org/). 
+* Solution:
+  1. 安装：在我的两台虚拟机上分别安装
+     1. Fedora32: `sudo dnf install mosh`
+     2. Ubuntu16: `sudo apt install mosh`
+  2. 先运行服务端（Fedora32）：`mosh-server`, 然后会返回如下信息：
+  ```
+    MOSH CONNECT 60001 JHpteM8RR3TfZg5LrmAm7w
+  ```
+  3. 再在Ubuntu16上运行客户端：`MOSH_KEY= JHpteM8RR3TfZg5LrmAm7w mosh-client 192.168.29.128 60001`
+     1. 注意：客户端运行时`MOSH_KEY`一定和`mosh-client`要写在同一行，否则会报`MOSH_KEY environment variable not found.`
+  4. 同类替代工具[ET](https://github.com/MisterTea/EternalTerminal)
