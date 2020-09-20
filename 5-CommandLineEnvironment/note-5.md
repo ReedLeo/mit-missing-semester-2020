@@ -33,8 +33,9 @@
     * `<C-b> <direction>`: 切换到特定方向的pane, 这里`<direction>`是方向键.
     * `<C-b> z`: 放大/缩小当前pane.
     * `<C-b> <space>`: 切换pane的排列方式（水平，垂直，原始）
+    * `<C-b> x`： 关闭当前Pane.
   * [tmux快速入门](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/)
-  * [tmux详细教程](http://linuxcommand.org/lc3_adv_termmux.php)
+  * [其他终端复用参考](http://linuxcommand.org/lc3_adv_termmux.php)
 
 PS: `tmux`中`zsh-autosuggestions`提示字符变成白色，而不是浅灰色半透明字体，是因为`tmux`环境变量`TERM=screen`，而`zsh`中的`TERM=xterm-256color`。
 * 解决办法： `echo "export TERM=xterm-256color" >> ~/.zshrc` [详情参考这篇文章](https://www.mojidong.com/post/2017-05-14-zsh-autosuggestions/)
@@ -217,6 +218,6 @@ Host ubt20  # my vm is ubuntu20
   ```
     MOSH CONNECT 60001 JHpteM8RR3TfZg5LrmAm7w
   ```
-  3. 再在Ubuntu16上运行客户端：`MOSH_KEY= JHpteM8RR3TfZg5LrmAm7w mosh-client 192.168.29.128 60001`
+  3. 再在Ubuntu16上运行客户端：`MOSH_KEY=JHpteM8RR3TfZg5LrmAm7w mosh-client 192.168.29.128 60001`
      1. 注意：客户端运行时`MOSH_KEY`一定和`mosh-client`要写在同一行，否则会报`MOSH_KEY environment variable not found.`
   4. 同类替代工具[ET](https://github.com/MisterTea/EternalTerminal)
