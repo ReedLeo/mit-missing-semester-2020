@@ -108,3 +108,42 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
 
 ## Git 命令行接口
 只记录还不怎么熟悉的命令。
+### Basic
+* `git log`: 显示详细历史日志。
+* `git log --all --graph --decorate`： 以DAG形式展示详细日志
+
+### 分支与合并
+* `git branch <name>`： 创建一个分支
+* `git checkout -b <name>`: 创建一个分支并切换到该分支
+* `git merge <revision>`: 将当前分支合并到指定分支
+* `git mergetool`: 使用工具简化合并时的冲突处理
+* `git rebase`: TODO
+
+### 远端
+* `git remote`: 列出远端仓库
+* `git remote add <name> <url>`：添加一个远程仓库
+* `git push <remote> <local branch>:<remote branch>`: 发送对象给远端仓库，并更新远端引用
+* `git fetch`: 从远端获取对象/引用
+* `git pull`: 等价于`git fetch; git merge`
+
+### 撤销
+* `git commit --amend`: 一次提交的内容或信息(message)
+* `git reset HEAD <file>`: unstage a file
+* `git checkout -- <file>`: 放弃更改
+
+## 进阶Git
+* `git config`: Git可以高度定制化，[参考此链接](https://git-scm.com/docs/git-config)
+* `git clone --depth=1`: 浅拷贝：不复制完整的版本历史
+* `git add -p`: 交互式暂存
+* `git rebase -i`: 交互式重定位
+* `git blame`: 显示最后修改者
+* `git stash`: 暂时从工作目录中移除更改
+* `git bisect`: 二分查找的方式搜索历史记录
+* `.gitignore`: 指定忽略项。这个[Github项目](https://github.com/github/gitignore)记录了许多常用的`.gitignore`配置，可以参考。
+
+## 杂项
+* 工作流：以下三篇文章介绍了几种工程实践中git的建议工作流
+    1. https://nvie.com/posts/a-successful-git-branching-model/
+    2. https://www.endoflineblog.com/gitflow-considered-harmful
+    3. https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
+
