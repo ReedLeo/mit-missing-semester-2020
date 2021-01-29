@@ -117,7 +117,7 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
 * `git checkout -b <name>`: 创建一个分支并切换到该分支
 * `git merge <revision>`: 将当前分支合并到指定分支
 * `git mergetool`: 使用工具简化合并时的冲突处理
-* `git rebase`: TODO
+* `git rebase`: 将一个分支合并到另一个分支中，效果与merge类似
 
 ### 远端
 * `git remote`: 列出远端仓库
@@ -147,3 +147,11 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
     2. https://www.endoflineblog.com/gitflow-considered-harmful
     3. https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 
+## Learn git branching
+* 相对commit: `git checkout main^` 表示切换到main的父节点，同理`main^^`表示main的祖父节点。
+* `~`操作符：`^`只向上移动一次，`~`可以指定移动次数。如`git checkout HEAD~4`移动到HEAD前4个节点。
+    * `git branch -f main HEAD~3`: 将main移动到HEAD之前3个节点处。
+* `git reset`: 将当前分支的引用往回移动指定个节点。
+* `git revert`: 当使用**远程仓库**时，`git reset`就不适合了，因为别人可以还在"当前节点"上进行开发。我们需要使用`git revert`，它以原节点作为父节点，创建一个新的节点，这样其他人就可以看到我们的修改。
+* `git cherry-pick`: 选择几个节点（可来自不同分支）作为当前分支新节点(commit)的祖先节点，祖先顺序与选择顺序相同。例：`git cherry-pick c3 c1 c2`后， `c3 <- c1 <- c2 <- HEAD`
+* `git rebase -i`: Interactive rebase.
