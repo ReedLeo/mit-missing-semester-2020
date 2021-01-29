@@ -155,3 +155,10 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
 * `git revert`: 当使用**远程仓库**时，`git reset`就不适合了，因为别人可以还在"当前节点"上进行开发。我们需要使用`git revert`，它以原节点作为父节点，创建一个新的节点，这样其他人就可以看到我们的修改。
 * `git cherry-pick`: 选择几个节点（可来自不同分支）作为当前分支新节点(commit)的祖先节点，祖先顺序与选择顺序相同。例：`git cherry-pick c3 c1 c2`后， `c3 <- c1 <- c2 <- HEAD`
 * `git rebase -i`: Interactive rebase.
+* `git tag`: 可以作为开发时的”里程碑”，tag不会随分支更改而移动，而是固定与某一次commit绑定。
+    * `git tag v1 C1`: 将C1打一个名为v1的tag。
+    * `git checkout v1`：可以将`HEAD`切到C1。
+* `git describe <ref>`: `<ref>`是git可以解析到一次commit的任意符号（hash, tag）。该命令返回结果形如`<tag>_<numCommits>_g<hash>`：
+    * `<tag>`: 距`<ref>`最近的tag名称
+    * `<numCommits>`: `<ref>`与`<tag>`相距的commit次数
+    * `<hash>`： `<ref>`自身的hash
