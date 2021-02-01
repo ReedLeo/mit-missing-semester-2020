@@ -123,7 +123,7 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
 * `git remote`: 列出远端仓库
 * `git remote add <name> <url>`：添加一个远程仓库
 * `git push <remote> <local branch>:<remote branch>`: 发送对象给远端仓库，并更新远端引用
-* `git fetch`: 从远端获取对象/引用
+* `git fetch`: 从远端获取对象/引用, 更新远端分支(如:`origin/main`, `origin/master`)。
 * `git pull`: 等价于`git fetch; git merge`
 
 ### 撤销
@@ -148,6 +148,7 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
     3. https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow
 
 ## Learn git branching
+地址：https://learngitbranching.js.org/
 * 相对commit: `git checkout main^` 表示切换到main的父节点，同理`main^^`表示main的祖父节点。
 * `~`操作符：`^`只向上移动一次，`~`可以指定移动次数。如`git checkout HEAD~4`移动到HEAD前4个节点。
     * `git branch -f main HEAD~3`: 将main移动到HEAD之前3个节点处。
@@ -162,3 +163,6 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
     * `<tag>`: 距`<ref>`最近的tag名称
     * `<numCommits>`: `<ref>`与`<tag>`相距的commit次数
     * `<hash>`： `<ref>`自身的hash
+* `git checkout HEAD^<num>`： 指定向多个父节点中的哪个移动，而且可以搭配`~`来指定回溯路径
+    * `git checkout HEAD~^2~3`
+* `git branch -u origin/main foo`: 使用`foo`关联`origin/main`
