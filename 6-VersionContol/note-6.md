@@ -168,3 +168,7 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
 * `git branch -u origin/main foo`: 使用`foo`关联`origin/main`
 * `git push origin :foo`: 若远端有foo这个分支引用，则该语句会删除远端仓库名为`foo`的引用。
 * `git fetch origin :bar`： 即使远端仓库没有这个`bar`引用，也会创建一个本地名为`bar`的引用。
+
+## Exercise 相关
+* 定制`.gitconfig`文件来个性化git，具体参见`man git-config`，然后搜索`gitconfig`即可。
+* 全局版的`.gitignore`：可以利用`git-config`中的`core.excludesFile`选项，指定全局`gitignore`的配置文件。具体参见`man git-config`和`man gitignore`，搜`excludesFile`。
