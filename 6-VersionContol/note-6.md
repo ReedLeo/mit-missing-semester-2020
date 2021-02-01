@@ -166,3 +166,5 @@ Git并不直接基于当前状态创建快照。而是将当前改动保存在St
 * `git checkout HEAD^<num>`： 指定向多个父节点中的哪个移动，而且可以搭配`~`来指定回溯路径
     * `git checkout HEAD~^2~3`
 * `git branch -u origin/main foo`: 使用`foo`关联`origin/main`
+* `git push origin :foo`: 若远端有foo这个分支引用，则该语句会删除远端仓库名为`foo`的引用。
+* `git fetch origin :bar`： 即使远端仓库没有这个`bar`引用，也会创建一个本地名为`bar`的引用。
