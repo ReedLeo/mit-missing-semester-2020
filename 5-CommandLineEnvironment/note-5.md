@@ -3,7 +3,7 @@
 ## Job Contorl
 ### Killing a process
 * `Ctlr + \`: 产生`SIGQUIT`信号。程序默认异常退出，并生成`core dump`文件。
-* `Ctlr + c`: 产生`SIGINT`信号。程序默认推出。
+* `Ctlr + c`: 产生`SIGINT`信号。程序默认退出。
 * `kill`: 该命令可以发送特定的信号给指定的进程。
 * 信号定义及行为详见[BSD手册](https://www.freebsd.org/cgi/man.cgi?query=signal&apropos=0&sektion=0&manpath=FreeBSD+12.1-RELEASE+and+Ports&arch=default&format=html)。（比Linux manual详细）。
   
